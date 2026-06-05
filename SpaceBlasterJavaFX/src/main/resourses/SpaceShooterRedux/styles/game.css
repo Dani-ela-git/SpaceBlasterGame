@@ -1,0 +1,19 @@
+.hud-text {
+    -fx-font-family: "Arial";
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 2, 0, 2, 2);
+}
+
+.score-label {
+    -fx-fill: #00ff00;
+}
+
+.level-label {
+    -fx-fill: #ffff00;
+}
+
+.lives-label {
+    -fx-fill: #ff0000;
+}
