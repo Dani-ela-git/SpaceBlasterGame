@@ -27,9 +27,6 @@ public class GameState {
     private Queue<Bullet> bulletsToAdd;
     private Queue<PowerUp> powerUpsToAdd;
 
-    private int requiredScore; // Pontuação necessária para passar de fase
-    private int phase; // Fase atual (1-4)
-
     public GameState() {
         this.player = new Player(512, 650);
         this.asteroids = new ArrayList<>();
@@ -44,13 +41,16 @@ public class GameState {
         this.bossDefeated = false;
         this.enemiesToSpawn = 5;
         this.enemiesSpawned = 0;
-        this.requiredScore = 1000; // Primeira fase precisa de 1000 pontos
-        this.phase = 1;
 
         this.asteroidsToAdd = new ConcurrentLinkedQueue<>();
         this.enemiesToAdd = new ConcurrentLinkedQueue<>();
         this.bulletsToAdd = new ConcurrentLinkedQueue<>();
         this.powerUpsToAdd = new ConcurrentLinkedQueue<>();
+    }
+
+    // Verifica se deve avançar de level baseado na pontuação
+    public boolean shouldAdvanceLevel() {
+        return score >= level * 1000;
     }
 
     public void update() {
@@ -83,11 +83,7 @@ public class GameState {
             powerUps.add(powerUpsToAdd.poll());
         }
 
-        if (level < 4 && enemies.isEmpty() && asteroids.isEmpty()
-                && enemiesSpawned >= enemiesToSpawn && !levelComplete) {
-            levelComplete = true;
-        }
-
+        // Verifica se completou o level 4 com o boss
         if (level == 4 && boss != null && boss.isDefeated() && !levelComplete) {
             bossDefeated = true;
             levelComplete = true;
@@ -126,113 +122,37 @@ public class GameState {
     }
 
     // Getters e Setters
-    public Player getPlayer() {
-        return player;
+    public Player getPlayer() { return player; }
+    public List<Asteroid> getAsteroids() { return asteroids; }
+    public List<Enemy> getEnemies() { return enemies; }
+    public List<Bullet> getBullets() { return bullets; }
+    public List<PowerUp> getPowerUps() { return powerUps; }
+    public Boss getBoss() { return boss; }
+    public void setBoss(Boss boss) { this.boss = boss; }
+
+    public int getScore() { return score; }
+    public void addScore(int points) { this.score += points; }
+    public void setScore(int score) { this.score = score; }
+
+    public int getLevel() { return level; }
+    public void setLevel(int level) { this.level = level; }
+    public void nextLevel() { 
+        this.level++; 
+        this.levelComplete = false;
     }
 
-    public List<Asteroid> getAsteroids() {
-        return asteroids;
-    }
+    public boolean isGameRunning() { return gameRunning; }
+    public void setGameRunning(boolean running) { this.gameRunning = running; }
 
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
+    public boolean isLevelComplete() { return levelComplete; }
+    public void setLevelComplete(boolean complete) { this.levelComplete = complete; }
 
-    public List<Bullet> getBullets() {
-        return bullets;
-    }
+    public int getEnemiesToSpawn() { return enemiesToSpawn; }
+    public void setEnemiesToSpawn(int count) { this.enemiesToSpawn = count; }
 
-    public List<PowerUp> getPowerUps() {
-        return powerUps;
-    }
+    public int getEnemiesSpawned() { return enemiesSpawned; }
+    public void setEnemiesSpawned(int spawned) { this.enemiesSpawned = spawned; }
 
-    public Boss getBoss() {
-        return boss;
-    }
-
-    public void setBoss(Boss boss) {
-        this.boss = boss;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void addScore(int points) {
-        this.score += points;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public void nextLevel() {
-        this.level++;
-    }
-
-    public boolean isGameRunning() {
-        return gameRunning;
-    }
-
-    public void setGameRunning(boolean running) {
-        this.gameRunning = running;
-    }
-
-    public boolean isLevelComplete() {
-        return levelComplete;
-    }
-
-    public void setLevelComplete(boolean complete) {
-        this.levelComplete = complete;
-    }
-
-    public int getEnemiesToSpawn() {
-        return enemiesToSpawn;
-    }
-
-    public void setEnemiesToSpawn(int count) {
-        this.enemiesToSpawn = count;
-    }
-
-    public int getEnemiesSpawned() {
-        return enemiesSpawned;
-    }
-
-    public void setEnemiesSpawned(int spawned) {
-        this.enemiesSpawned = spawned;
-    }
-
-    public boolean isBossDefeated() {
-        return bossDefeated;
-    }
-
-    public void setBossDefeated(boolean defeated) {
-        this.bossDefeated = defeated;
-    }
-
-    public int getRequiredScore() {
-        return requiredScore;
-    }
-
-    public void setRequiredScore(int requiredScore) {
-        this.requiredScore = requiredScore;
-    }
-
-    public int getPhase() {
-        return phase;
-    }
-
-    public void setPhase(int phase) {
-        this.phase = phase;
-    }
-
-    public void nextPhase() {
-        this.phase++;
-        // Aumenta a pontuação necessária para cada fase
-        this.requiredScore = 1000 + phase; // Fase 2: 2000, Fase 3: 3000, Fase 4: 4000
-    }
+    public boolean isBossDefeated() { return bossDefeated; }
+    public void setBossDefeated(boolean defeated) { this.bossDefeated = defeated; }
 }
