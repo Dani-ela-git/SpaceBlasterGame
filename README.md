@@ -2,13 +2,13 @@
 
 A 2D space shooter game developed in Java with JavaFX. Fight against waves of asteroids and enemy ships, collect power-ups, and defeat the final boss!
 
-## 📋 Requirements
+##  Requirements
 
 - Java 17 or higher
 - JavaFX 17 or higher
 - Maven (optional, for dependency management)
 
-## 🎮 How to Play
+## How to Play
 
 ### Controls
 - **Arrow Keys** - Move your ship
@@ -36,7 +36,7 @@ A 2D space shooter game developed in Java with JavaFX. Fight against waves of as
 - **Score Multiplier** - Earn bonus points
 - **Extra Life** - Gain an additional life
 
-## 🚀 How to Run
+## How to Run
 
 ### Using Maven (Recommended)
 
