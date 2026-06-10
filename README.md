@@ -4,8 +4,8 @@ A 2D space shooter game developed in Java with JavaFX. Fight against waves of as
 
 ## 📋 Requirements
 
-- Java 25 or higher
-- JavaFX 23 or higher
+- Java 17 or higher
+- JavaFX 17 or higher
 - Maven (optional, for dependency management)
 
 ## 🎮 How to Play
