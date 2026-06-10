@@ -1,39 +1,52 @@
-# Space Blaster JavaFX
+# Space Blaster
 
-Um jogo estilo "Space Shooter" desenvolvido em Java com JavaFX.
+A 2D space shooter game developed in Java with JavaFX. Fight against waves of asteroids and enemy ships, collect power-ups, and defeat the final boss!
 
-## Sobre o Jogo
+## 📋 Requirements
 
-Space Blaster é um jogo de nave espacial onde o jogador controla uma nave e deve destruir asteroides e inimigos enquanto coleta power-ups para sobreviver.
+- Java 25 or higher
+- JavaFX 23 or higher
+- Maven (optional, for dependency management)
 
-## Funcionalidades
+## 🎮 How to Play
 
-- Sistema de pontuação e high scores
-- Power-ups (tiro duplo, escudo, velocidade)
-- Inimigos com diferentes padrões de movimento
-- Efeitos sonoros
-- Interface gráfica intuitiva
+### Controls
+- **Arrow Keys** - Move your ship
+- **SPACE** - Shoot
 
-## Tecnologias
+### Gameplay
+- Destroy asteroids and enemies to earn points
+- Avoid enemy fire and collisions
+- You have 3 lives
+- Complete 4 levels to win!
+- Each level requires 1000 points to advance
 
-- Java 17+
-- JavaFX
-- Maven
+### Difficulty Progression
 
-## Como Executar
+| Level | Points Required | Enemies | Difficulty |
+|-------|----------------|---------|------------|
+| 1 | 1000 | 0 | Normal |
+| 2 | 2000 | 5 | Increased speed |
+| 3 | 3000 | 8 | Fast spawn rate |
+| 4 | 4000 | 10 + Boss | Maximum difficulty |
 
-### Pré-requisitos
-- JDK 17 ou superior
-- Maven instalado
+### Power-ups
+- **Rapid Fire** - Shoot faster for 5 seconds
+- **Shield** - Become invincible for 5 seconds
+- **Score Multiplier** - Earn bonus points
+- **Extra Life** - Gain an additional life
 
-### Passos
+## 🚀 How to Run
+
+### Using Maven (Recommended)
 
 ```bash
-# Clone o repositório
-git clone https://github.com/Dani-ela-git/Space-Blaster.git
+# Clone the repository
+git clone https://github.com/yourusername/SpaceBlasterJavaFX.git
 
-# Entre na pasta
-cd Space-Blaster/SpaceBlasterJavaFX
+# Navigate to the project
+cd SpaceBlasterJavaFX
 
-# Compile e execute com Maven
-mvn clean javafx:run
+# Compile and run
+mvn clean compile
+mvn javafx:run
