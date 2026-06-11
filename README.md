@@ -64,8 +64,7 @@ The project follows the Model-View-Controller (MVC) architectural pattern:
 - **Controller**: Game logic, input handling, collision detection, and level progression
 
 ### Class Structure
-
-com.spaceblaster/
+**com.spaceblaster/
 ├── Main.java # Application entry point
 ├── controller/
 │ ├── GameController.java # Main game logic and loop
@@ -81,7 +80,7 @@ com.spaceblaster/
 │ └── PowerUp.java # Power-up items
 └── util/
 ├── ScoreManager.java # High score persistence
-└── CollisionDetector.java # Collision detection utilities
+└── CollisionDetector.java # Collision detection utilities**
 
 
 ### Key Design Decisions
@@ -120,32 +119,7 @@ com.spaceblaster/
 - Game entities extend no external classes, using composition instead
 - All public methods are documented with JavaDoc comments
 
-### Important Code Sections
-
-**Game Loop (GameController.java)**
-```java
-gameLoop = new AnimationTimer() {
-    @Override
-    public void handle(long now) {
-        update();  // Update game logic
-        render(gc); // Render graphics
-    }
-};
-
-Collision Detection (GameController.java)
-for (Iterator<Bullet> bulletIt = gameState.getBullets().iterator(); bulletIt.hasNext();) {
-    Bullet bullet = bulletIt.next();
-    if (bullet.isFromPlayer()) {
-        // Check collisions with asteroids, enemies, and boss
-    }
-}
-
-Score-Based Level Progression (GameState.java)
-public boolean shouldAdvanceLevel() {
-    return score >= level * 1000;
-}
-
-### Known Issues
+Known Issues
 Images are loaded from absolute path; adjust basePath in loadImages() if images don't appear
 
 Power-up for extra life is not yet fully implemented
@@ -181,24 +155,23 @@ TC-10	PASS	Scores persist to highscores.txt
 All core features function as expected. No critical bugs were found.
 
 6. Build Procedures
-
 Prerequisites
 Install Java 17 or higher (Ubuntu/Debian):
 
+bash
 sudo apt update
 sudo apt install openjdk-17-jdk
 java -version
-
 Install JavaFX:
 
+bash
 sudo apt install openjfx
-
 Install Maven (optional but recommended):
 
+bash
 sudo apt install maven
-
 Clone and Build
-
+bash
 # Clone the repository
 git clone https://github.com/Dani-ela-git/SpaceBlasterGame.git
 
@@ -210,9 +183,8 @@ mvn clean compile
 
 # Run the game
 mvn javafx:run
-
 Alternative: Run without Maven
-
+bash
 # Set JavaFX path
 JAVAFX_PATH="/usr/share/openjfx/lib"
 
@@ -221,34 +193,11 @@ javac --module-path $JAVAFX_PATH --add-modules javafx.controls,javafx.fxml,javaf
 
 # Run
 java --module-path $JAVAFX_PATH --add-modules javafx.controls,javafx.fxml,javafx.media -cp bin com.spaceblaster.Main
-
 Image Assets
 The game uses sprites from the Space Shooter Redux asset pack. Images are located at:
 
+text
 src/main/resourses/images/
-
-Required images:
-
-darkPurple.png (background)
-
-playerShip3_green.png (player ship)
-
-meteorBrown_big4.png (asteroid)
-
-enemyBlue4.png (enemy)
-
-ufoYellow.png (boss)
-
-laserBlue01.png (bullet)
-
-heart.png (life indicator)
-
-powerup_rapid.png, powerup_shield.png, powerup_life.png, powerup_score.png
-
-Acknowledgments
-Space Shooter Redux asset pack by Kenney (www.kenney.nl)
-
-JavaFX documentation and community
 
 How to Play
 Controls
@@ -282,6 +231,3 @@ Score Multiplier - Earn bonus points
 
 Extra Life - Gain an additional life
 
-Developed as a university project for Object-Oriented Programming course.
-
-Repository: https://github.com/Dani-ela-git/SpaceBlasterGame
