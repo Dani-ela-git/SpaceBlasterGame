@@ -1,9 +1,10 @@
-/home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/view/GameView.java
+/home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/model/package-info.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/model/Boss.java
+/home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/controller/package-info.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/Main.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/util/CollisionDetector.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/model/PowerUp.java
-/home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/view/HighScoreView.java
+/home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/util/package-info.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/model/Enemy.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/util/SoundManager.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/model/GameState.java
@@ -14,4 +15,3 @@
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/model/Player.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/controller/MenuController.java
 /home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/util/ScoreManager.java
-/home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/java/com/spaceblaster/view/MenuView.java

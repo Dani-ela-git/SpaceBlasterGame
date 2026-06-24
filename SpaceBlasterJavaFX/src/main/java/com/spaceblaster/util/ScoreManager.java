@@ -110,11 +110,7 @@ public class ScoreManager {
         
         if (!file.exists()) {
             System.out.println("File not found. Creating default scores.");
-            scores.add(new HighScoreEntry("AAA", 5));
-            scores.add(new HighScoreEntry("BBB", 4));
-            scores.add(new HighScoreEntry("CCC", 3));
-            scores.add(new HighScoreEntry("DDD", 2));
-            scores.add(new HighScoreEntry("EEE", 1));
+            scores = createDefaultScores();
             
             try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
                 for (HighScoreEntry entry : scores) {

@@ -48,61 +48,61 @@ public class GameController {
 
     /** The primary stage (window) where the game is displayed. */
     private Stage primaryStage;
-    
+
     /** The width of the game area in pixels. */
     private int width;
-    
+
     /** The height of the game area in pixels. */
     private int height;
-    
+
     /** The current state of the game containing all entities and data. */
     private GameState gameState;
-    
+
     /** The main game loop that runs at 60 FPS. */
     private AnimationTimer gameLoop;
-    
+
     /** The set of keys currently being pressed by the player. */
     private Set<KeyCode> activeKeys;
-    
+
     /** Timestamp of the last shot fired by the player. */
     private long lastShotTime;
-    
+
     /** Timestamp of the last enemy spawn. */
     private long lastEnemySpawnTime;
-    
+
     /** Timestamp of the last asteroid spawn. */
     private long lastAsteroidSpawnTime;
-    
+
     /** Random number generator for spawn positions and probabilities. */
     private Random random;
-    
+
     /** The canvas where all game graphics are rendered. */
     private Canvas canvas;
-    
+
     /** The graphics context used for drawing on the canvas. */
     private GraphicsContext gc;
 
     /** Background image for the game. */
     private Image background;
-    
+
     /** Player ship image. */
     private Image playerImage;
-    
+
     /** Asteroid image. */
     private Image asteroidImage;
-    
+
     /** Enemy ship image. */
     private Image enemyImage;
-    
+
     /** Boss ship image. */
     private Image bossImage;
-    
+
     /** Bullet image. */
     private Image bulletImage;
-    
+
     /** Heart image for lives display. */
     private Image heartImage;
-    
+
     /** Map of power-up type to corresponding images. */
     private Map<PowerUp.PowerUpType, Image> powerUpImages;
 
@@ -110,8 +110,8 @@ public class GameController {
      * Constructs a new GameController with the specified parameters.
      * 
      * @param primaryStage The primary stage (window) for the game
-     * @param width The width of the game area
-     * @param height The height of the game area
+     * @param width        The width of the game area
+     * @param height       The height of the game area
      */
     public GameController(Stage primaryStage, int width, int height) {
         this.primaryStage = primaryStage;
@@ -130,32 +130,37 @@ public class GameController {
      */
     private void loadImages() {
         try {
-            String basePath = "/home/daniela/Documentos/faculdade/POO/codigos_java/SpaceBlasterGame/SpaceBlasterJavaFX/src/main/resourses/images/";
+            // Obtém o diretório atual do projeto
+            String userDir = System.getProperty("user.dir");
+            String basePath = userDir + "/src/main/resourses/images/";
 
-            System.out.println("Loading images from: " + basePath);
-
-            background = loadImage(basePath + "darkPurple.png");
-            playerImage = loadImage(basePath + "playerShip3_green.png");
-            asteroidImage = loadImage(basePath + "meteorBrown_big4.png");
-            enemyImage = loadImage(basePath + "enemyBlue4.png");
-            bossImage = loadImage(basePath + "ufoYellow.png");
-            bulletImage = loadImage(basePath + "laserBlue01.png");
-            heartImage = loadImage(basePath + "heart.png");
+            background = new Image("file:" + basePath + "darkPurple.png");
+            playerImage = new Image("file:" + basePath + "playerShip3_green.png");
+            asteroidImage = new Image("file:" + basePath + "meteorBrown_big4.png");
+            enemyImage = new Image("file:" + basePath + "enemyBlue4.png");
+            bossImage = new Image("file:" + basePath + "ufoYellow.png");
+            bulletImage = new Image("file:" + basePath + "laserBlue01.png");
+            heartImage = new Image("file:" + basePath + "heart.png");
 
             powerUpImages = new HashMap<>();
-            powerUpImages.put(PowerUp.PowerUpType.RAPID_FIRE, loadImage(basePath + "powerup_rapid.png"));
-            powerUpImages.put(PowerUp.PowerUpType.SHIELD, loadImage(basePath + "powerup_shield.png"));
-            powerUpImages.put(PowerUp.PowerUpType.EXTRA_LIFE, loadImage(basePath + "powerup_life.png"));
-            powerUpImages.put(PowerUp.PowerUpType.SCORE_MULTIPLIER, loadImage(basePath + "powerup_score.png"));
+            powerUpImages.put(PowerUp.PowerUpType.RAPID_FIRE,
+                    new Image("file:" + basePath + "powerup_rapid.png"));
 
             int loadedCount = 0;
-            if (background != null) loadedCount++;
-            if (playerImage != null) loadedCount++;
-            if (asteroidImage != null) loadedCount++;
-            if (enemyImage != null) loadedCount++;
-            if (bossImage != null) loadedCount++;
-            if (bulletImage != null) loadedCount++;
-            if (heartImage != null) loadedCount++;
+            if (background != null)
+                loadedCount++;
+            if (playerImage != null)
+                loadedCount++;
+            if (asteroidImage != null)
+                loadedCount++;
+            if (enemyImage != null)
+                loadedCount++;
+            if (bossImage != null)
+                loadedCount++;
+            if (bulletImage != null)
+                loadedCount++;
+            if (heartImage != null)
+                loadedCount++;
 
             System.out.println("Loaded " + loadedCount + "/7 images successfully!");
 
@@ -163,28 +168,7 @@ public class GameController {
             System.err.println("Error loading images: " + e.getMessage());
         }
     }
-
-    /**
-     * Helper method to load a single image from a file path.
-     * 
-     * @param path The file path to the image
-     * @return The loaded Image, or null if loading failed
-     */
-    private Image loadImage(String path) {
-        try {
-            Image img = new Image("file:" + path);
-            if (img.isError()) {
-                System.err.println("Error loading: " + path);
-                return null;
-            }
-            System.out.println("  Loaded: " + path.substring(path.lastIndexOf("/") + 1));
-            return img;
-        } catch (Exception e) {
-            System.err.println("Failed: " + path);
-            return null;
-        }
-    }
-
+    
     /**
      * Starts the game by initializing the game state, setting up the level,
      * creating the game scene, and starting the game loop.
@@ -224,9 +208,11 @@ public class GameController {
     }
 
     /**
-     * Sets up the current level by configuring enemy spawn counts and boss presence.
+     * Sets up the current level by configuring enemy spawn counts and boss
+     * presence.
      * Level 1: Only asteroids
-     * Level 2-3: Asteroids + Enemies
+     * Level 2: Asteroids + Enemies
+     * Level 3: Asteroids + Enemies (Enemies shoot)
      * Level 4: Asteroids + Enemies + Boss
      */
     private void setupLevel() {
@@ -281,7 +267,7 @@ public class GameController {
         }
 
         Player player = gameState.getPlayer();
-        
+
         if (activeKeys.contains(KeyCode.LEFT)) {
             player.moveLeft();
         }
@@ -336,7 +322,8 @@ public class GameController {
     }
 
     /**
-     * Spawns a new asteroid at a random horizontal position at the top of the screen.
+     * Spawns a new asteroid at a random horizontal position at the top of the
+     * screen.
      */
     private void spawnAsteroid() {
         double x = random.nextDouble() * (width - 50) + 25;
@@ -488,11 +475,6 @@ public class GameController {
             case SHIELD:
                 player.activateShield(5000);
                 break;
-            case EXTRA_LIFE:
-                if (player.getLives() < 5) {
-                    // Extra life implementation
-                }
-                break;
             case SCORE_MULTIPLIER:
                 gameState.addScore(500);
                 break;
@@ -531,7 +513,7 @@ public class GameController {
             int currentPoints = gameState.getPointsInCurrentLevel();
             int nextLevelPoints = 400;
             int extraPoints = Math.max(0, currentPoints - nextLevelPoints);
-            
+
             message = "LEVEL " + completedLevel + " COMPLETE!\n"
                     + "Total Score: " + gameState.getScore()
                     + "\nPoints in this level: " + Math.min(currentPoints, nextLevelPoints) + "/" + nextLevelPoints
@@ -589,7 +571,7 @@ public class GameController {
         int pointsInLevel = gameState.getPointsInCurrentLevel();
         int pointsNeeded = 400;
         int missingPoints = Math.max(0, pointsNeeded - pointsInLevel);
-        
+
         Text infoText = new Text("You reached Level " + currentLevel
                 + "\nYour total score: " + gameState.getScore()
                 + "\nPoints in this level: " + pointsInLevel + "/" + pointsNeeded
@@ -637,26 +619,25 @@ public class GameController {
     /**
      * Creates a styled button for the game over screen.
      * 
-     * @param text The button text
+     * @param text  The button text
      * @param color The border color for the button
      * @return A styled Button instance
      */
     private Button createGameOverButton(String text, String color) {
         Button button = new Button(text);
         String baseStyle = "-fx-font-size: 20px; -fx-padding: 10px 30px; "
-                         + "-fx-background-color: transparent; -fx-text-fill: white; "
-                         + "-fx-border-color: " + color + "; -fx-border-width: 2px;";
+                + "-fx-background-color: transparent; -fx-text-fill: white; "
+                + "-fx-border-color: " + color + "; -fx-border-width: 2px;";
         String hoverStyle = "-fx-font-size: 20px; -fx-padding: 10px 30px; "
-                          + "-fx-background-color: rgba(0," + 
-                          (color.equals("green") ? "255,0" : 
-                           color.equals("cyan") ? "255,255" : "255,0") + ",0.2); "
-                          + "-fx-text-fill: " + color + "; "
-                          + "-fx-border-color: " + color + "; -fx-border-width: 2px;";
-        
+                + "-fx-background-color: rgba(0," +
+                (color.equals("green") ? "255,0" : color.equals("cyan") ? "255,255" : "255,0") + ",0.2); "
+                + "-fx-text-fill: " + color + "; "
+                + "-fx-border-color: " + color + "; -fx-border-width: 2px;";
+
         button.setStyle(baseStyle);
         button.setOnMouseEntered(e -> button.setStyle(hoverStyle));
         button.setOnMouseExited(e -> button.setStyle(baseStyle));
-        
+
         return button;
     }
 
@@ -765,7 +746,7 @@ public class GameController {
 
         // HUD
         gc.setFill(Color.WHITE);
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        gc.setFont(Font.font("monospaced", FontWeight.BOLD, 24));
         gc.fillText("SCORE: " + gameState.getScore(), 20, 40);
         gc.fillText("LEVEL: " + gameState.getLevel() + "/4", 20, 80);
 
@@ -781,7 +762,7 @@ public class GameController {
             gc.setFill(Color.GREEN);
             gc.fillRect(width - 220, 20, 200 * progress, 20);
             gc.setFill(Color.WHITE);
-            gc.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+            gc.setFont(Font.font("monospaced", FontWeight.NORMAL, 12));
             int displayPoints = Math.min(pointsInLevel, pointsNeeded);
             gc.fillText(displayPoints + "/" + pointsNeeded, width - 130, 35);
             gc.fillText("NEXT LEVEL", width - 210, 18);
@@ -797,7 +778,7 @@ public class GameController {
         }
 
         // Power-up status
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        gc.setFont(Font.font("monospaced", FontWeight.BOLD, 18));
         if (gameState.getPlayer().hasShield()) {
             gc.setFill(Color.CYAN);
             gc.fillText("SHIELD", width - 120, 40);

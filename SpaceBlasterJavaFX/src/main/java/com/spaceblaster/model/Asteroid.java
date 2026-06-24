@@ -61,6 +61,7 @@ public class Asteroid {
 
     /**
      * Gets the bounding rectangle of the asteroid for collision detection.
+     * The rectangle just apear if the image does not load, but it is used for collision detection.
      * 
      * @return A Rectangle representing the asteroid's bounds
      */
