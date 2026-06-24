@@ -110,11 +110,11 @@ public class ScoreManager {
         
         if (!file.exists()) {
             System.out.println("File not found. Creating default scores.");
-            scores.add(new HighScoreEntry("AAA", 5000));
-            scores.add(new HighScoreEntry("BBB", 4000));
-            scores.add(new HighScoreEntry("CCC", 3000));
-            scores.add(new HighScoreEntry("DDD", 2000));
-            scores.add(new HighScoreEntry("EEE", 1000));
+            scores.add(new HighScoreEntry("AAA", 5));
+            scores.add(new HighScoreEntry("BBB", 4));
+            scores.add(new HighScoreEntry("CCC", 3));
+            scores.add(new HighScoreEntry("DDD", 2));
+            scores.add(new HighScoreEntry("EEE", 1));
             
             try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
                 for (HighScoreEntry entry : scores) {
@@ -169,11 +169,11 @@ public class ScoreManager {
      */
     private static List<HighScoreEntry> createDefaultScores() {
         List<HighScoreEntry> scores = new ArrayList<>();
-        scores.add(new HighScoreEntry("AAA", 5000));
-        scores.add(new HighScoreEntry("BBB", 4000));
-        scores.add(new HighScoreEntry("CCC", 3000));
-        scores.add(new HighScoreEntry("DDD", 2000));
-        scores.add(new HighScoreEntry("EEE", 1000));
+        scores.add(new HighScoreEntry("AAA", 5));
+        scores.add(new HighScoreEntry("BBB", 4));
+        scores.add(new HighScoreEntry("CCC", 3));
+        scores.add(new HighScoreEntry("DDD", 2));
+        scores.add(new HighScoreEntry("EEE", 1));
         return scores;
     }
     
