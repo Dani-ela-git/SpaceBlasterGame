@@ -13,6 +13,7 @@ import com.spaceblaster.controller.MenuController;
  * @see Application
  * @see MenuController
  */
+
 public class Main extends Application {
     
     /** The title displayed in the game window. */
